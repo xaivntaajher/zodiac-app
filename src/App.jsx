@@ -27,14 +27,15 @@ function App() {
       Number(birthData.day)
     );
 
-    const westernDescription = westernZodiacDescriptions[westernZodiac];
+    const westernData = westernZodiacData[westernZodiac];
 
     const chineseSign = getChineseZodiac(Number(birthData.year));
     const chineseData = chineseZodiacData[chineseSign];
 
     setResult({
       western: westernZodiac,
-      westernDesc: westernDescription,
+      westernDesc: westernData.description,
+      stone: westernData.stone,
       chinese: chineseSign,
       chineseDesc: chineseData.description,
       avoid: chineseData.avoid,
@@ -42,19 +43,58 @@ function App() {
     });
   };
 
-  const westernZodiacDescriptions = {
-    Aries: "Aries is known for being energetic, assertive, and independent.",
-    Taurus: "Taurus is patient, reliable, and loves luxury and comfort.",
-    Gemini: "Gemini is curious, adaptable, and loves to communicate.",
-    Cancer: "Cancer is nurturing, protective, and deeply intuitive.",
-    Leo: "Leo is proud, generous, and loves to be the center of attention.",
-    Virgo: "Virgo is detail-oriented, practical, and loves to help others.",
-    Libra: "Libra values harmony, fairness, and beautiful things.",
-    Scorpio: "Scorpio is intense, determined, and mysterious.",
-    Sagittarius: "Sagittarius is optimistic, adventurous, and loves freedom.",
-    Capricorn: "Capricorn is ambitious, disciplined, and practical.",
-    Aquarius: "Aquarius is inventive, independent, and values equality.",
-    Pisces: "Pisces is compassionate, creative, and deeply emotional.",
+  const westernZodiacData = {
+    Aries: {
+      description:
+        "Aries is known for being energetic, assertive, and independent.",
+      stone: "Diamond",
+    },
+    Taurus: {
+      description: "Taurus is patient, reliable, and loves luxury and comfort.",
+      stone: "Emerald",
+    },
+    Gemini: {
+      description: "Gemini is curious, adaptable, and loves to communicate.",
+      stone: "Agate",
+    },
+    Cancer: {
+      description: "Cancer is nurturing, protective, and deeply intuitive.",
+      stone: "Moonstone",
+    },
+    Leo: {
+      description:
+        "Leo is proud, generous, and loves to be the center of attention.",
+      stone: "Onyx",
+    },
+    Virgo: {
+      description:
+        "Virgo is detail-oriented, practical, and loves to help others.",
+      stone: "Carnelian",
+    },
+    Libra: {
+      description: "Libra values harmony, fairness, and beautiful things.",
+      stone: "Opal",
+    },
+    Scorpio: {
+      description: "Scorpio is intense, determined, and mysterious.",
+      stone: "Topaz",
+    },
+    Sagittarius: {
+      description: "Sagittarius is optimistic, adventurous, and loves freedom.",
+      stone: "Turquoise",
+    },
+    Capricorn: {
+      description: "Capricorn is ambitious, disciplined, and practical.",
+      stone: "Ruby",
+    },
+    Aquarius: {
+      description: "Aquarius is inventive, independent, and values equality.",
+      stone: "Amethyst",
+    },
+    Pisces: {
+      description: "Pisces is compassionate, creative, and deeply emotional.",
+      stone: "Aquamarine",
+    },
   };
 
   const chineseZodiacData = {
