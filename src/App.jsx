@@ -36,6 +36,7 @@ function App() {
       western: westernZodiac,
       westernDesc: westernData.description,
       stone: westernData.stone,
+      stoneColor: westernData.stoneColor,
       chinese: chineseSign,
       chineseDesc: chineseData.description,
       avoid: chineseData.avoid,
@@ -48,52 +49,64 @@ function App() {
       description:
         "Aries is known for being energetic, assertive, and independent.",
       stone: "Diamond",
+      stoneColor: "#b9f2ff",
     },
     Taurus: {
       description: "Taurus is patient, reliable, and loves luxury and comfort.",
       stone: "Emerald",
+      stoneColor: "#50c878",
     },
     Gemini: {
       description: "Gemini is curious, adaptable, and loves to communicate.",
       stone: "Agate",
+      stoneColor: "#dcdcdc",
     },
     Cancer: {
       description: "Cancer is nurturing, protective, and deeply intuitive.",
       stone: "Moonstone",
+      stoneColor: "#aad9d9",
     },
     Leo: {
       description:
         "Leo is proud, generous, and loves to be the center of attention.",
       stone: "Onyx",
+      stoneColor: "#353839",
     },
     Virgo: {
       description:
         "Virgo is detail-oriented, practical, and loves to help others.",
       stone: "Carnelian",
+      stoneColor: "#b31b1b",
     },
     Libra: {
       description: "Libra values harmony, fairness, and beautiful things.",
       stone: "Opal",
+      stoneColor: "#a8c3bc",
     },
     Scorpio: {
       description: "Scorpio is intense, determined, and mysterious.",
       stone: "Topaz",
+      stoneColor: "#ffcc00",
     },
     Sagittarius: {
       description: "Sagittarius is optimistic, adventurous, and loves freedom.",
       stone: "Turquoise",
+      stoneColor: "#40e0d0",
     },
     Capricorn: {
       description: "Capricorn is ambitious, disciplined, and practical.",
       stone: "Ruby",
+      stoneColor: "#e0115f",
     },
     Aquarius: {
       description: "Aquarius is inventive, independent, and values equality.",
       stone: "Amethyst",
+      stoneColor: "#9966cc",
     },
     Pisces: {
       description: "Pisces is compassionate, creative, and deeply emotional.",
       stone: "Aquamarine",
+      stoneColor: "#7fffd4",
     },
   };
 
@@ -169,6 +182,59 @@ function App() {
     },
   };
 
+  const getWesternZodiac = (month, day) => {
+    const zodiacSigns = [
+      { sign: "Capricorn", start: [12, 22], end: [1, 19] },
+      { sign: "Aquarius", start: [1, 20], end: [2, 18] },
+      { sign: "Pisces", start: [2, 19], end: [3, 20] },
+      { sign: "Aries", start: [3, 21], end: [4, 19] },
+      { sign: "Taurus", start: [4, 20], end: [5, 20] },
+      { sign: "Gemini", start: [5, 21], end: [6, 20] },
+      { sign: "Cancer", start: [6, 21], end: [7, 22] },
+      { sign: "Leo", start: [7, 23], end: [8, 22] },
+      { sign: "Virgo", start: [8, 23], end: [9, 22] },
+      { sign: "Libra", start: [9, 23], end: [10, 22] },
+      { sign: "Scorpio", start: [10, 23], end: [11, 21] },
+      { sign: "Sagittarius", start: [11, 22], end: [12, 21] },
+    ];
+
+    for (const zodiac of zodiacSigns) {
+      const [startMonth, startDay] = zodiac.start;
+      const [endMonth, endDay] = zodiac.end;
+
+      if (
+        (month === startMonth && day >= startDay) ||
+        (month === endMonth && day <= endDay)
+      ) {
+        return zodiac.sign;
+      }
+    }
+
+    // If not found, default to Capricorn
+    return "Capricorn";
+  };
+
+  const getChineseZodiac = (year) => {
+    const animals = [
+      "Rat",
+      "Ox",
+      "Tiger",
+      "Rabbit",
+      "Dragon",
+      "Snake",
+      "Horse",
+      "Goat",
+      "Monkey",
+      "Rooster",
+      "Dog",
+      "Pig",
+    ];
+    const index = (year - 4) % 12;
+    return animals[index];
+  };
+
+  console.log("Result Object:", result);
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="bg-white p-6 rounded shadow w-full max-w-sm">
@@ -218,6 +284,33 @@ function App() {
             Find Zodiac
           </button>
         </form>
+        {/* Display result */}
+        {result && (
+          <div className="mt-6 text-center space-y-4">
+            <div>
+              <p className="text-xl font-bold">Your Western Zodiac:</p>
+              <p className="text-2xl">{result.western}</p>
+              <p className="text-sm text-gray-600">{result.westernDesc}</p>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <span className="text-sm font-semibold">Stone:</span>
+                <span
+                  className="inline-block w-6 h-6 rounded-full border border-gray-800"
+                  style={{ backgroundColor: "red" }}
+                ></span>
+                <span className="text-sm">{result.stone}</span>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-bold">Your Chinese Zodiac:</p>
+              <p className="text-2xl">{result.chinese}</p>
+              <p className="text-sm text-gray-600">{result.chineseDesc}</p>
+              <p className="text-sm font-semibold text-red-600 mt-2">
+                Avoid: {result.avoid}
+              </p>
+              <p className="text-xs text-gray-500">{result.reason}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
