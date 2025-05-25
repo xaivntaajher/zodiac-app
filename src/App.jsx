@@ -37,6 +37,7 @@ function App() {
       westernDesc: westernData.description,
       stone: westernData.stone,
       stoneColor: westernData.stoneColor,
+      traditionalColor: westernData.traditionalColor,
       chinese: chineseSign,
       chineseDesc: chineseData.description,
       avoid: chineseData.avoid,
@@ -50,63 +51,75 @@ function App() {
         "Aries is known for being energetic, assertive, and independent.",
       stone: "Diamond",
       stoneColor: "#b9f2ff",
+      traditionalColor: "#ff0000", // traditional red color
     },
     Taurus: {
       description: "Taurus is patient, reliable, and loves luxury and comfort.",
       stone: "Emerald",
       stoneColor: "#50c878",
+      traditionalColor: "#008000", // traditional green
     },
     Gemini: {
       description: "Gemini is curious, adaptable, and loves to communicate.",
       stone: "Agate",
       stoneColor: "#dcdcdc",
+      traditionalColor: "#ffff00", // yellow
     },
     Cancer: {
       description: "Cancer is nurturing, protective, and deeply intuitive.",
       stone: "Moonstone",
       stoneColor: "#aad9d9",
+      traditionalColor: "#c0c0c0", // silver
     },
     Leo: {
       description:
         "Leo is proud, generous, and loves to be the center of attention.",
       stone: "Onyx",
       stoneColor: "#353839",
+      traditionalColor: "#ffd700", // gold
     },
     Virgo: {
       description:
         "Virgo is detail-oriented, practical, and loves to help others.",
       stone: "Carnelian",
       stoneColor: "#b31b1b",
+      traditionalColor: "#8b4513", // brown
     },
     Libra: {
       description: "Libra values harmony, fairness, and beautiful things.",
       stone: "Opal",
       stoneColor: "#a8c3bc",
+      traditionalColor: "#ffc0cb", // pink
     },
     Scorpio: {
       description: "Scorpio is intense, determined, and mysterious.",
       stone: "Topaz",
       stoneColor: "#ffcc00",
+      traditionalColor: "#8b0000", // dark red
     },
     Sagittarius: {
       description: "Sagittarius is optimistic, adventurous, and loves freedom.",
       stone: "Turquoise",
       stoneColor: "#40e0d0",
+      traditionalColor: "#800080", // purple
     },
     Capricorn: {
       description: "Capricorn is ambitious, disciplined, and practical.",
       stone: "Ruby",
       stoneColor: "#e0115f",
+      traditionalColor: "#8b4513", // brown
     },
     Aquarius: {
       description: "Aquarius is inventive, independent, and values equality.",
       stone: "Amethyst",
       stoneColor: "#9966cc",
+      traditionalColor: "#0000ff", // blue
     },
     Pisces: {
       description: "Pisces is compassionate, creative, and deeply emotional.",
       stone: "Aquamarine",
       stoneColor: "#7fffd4",
+      traditionalColor: "#2e8b57", // sea green
     },
   };
 
@@ -233,13 +246,26 @@ function App() {
     return animals[index];
   };
 
-  console.log("Result Object:", result);
+  // console.log("Result Object:", result);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white p-6 rounded shadow w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-4 text-center">MyZodiac</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="bg-gray-200 p-6 rounded shadow w-full max-w-sm">
+        <h1 className="text-2xl font-bold mb-4 text-center text-black">
+          My
+          <span className="ml-1">
+            <span style={{ color: "red" }}>Z</span>
+            <span style={{ color: "orange" }}>o</span>
+            <span style={{ color: "yellow" }}>d</span>
+            <span style={{ color: "green" }}>i</span>
+            <span style={{ color: "blue" }}>a</span>
+            <span style={{ color: "purple" }}>c</span>
+          </span>
+        </h1>
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center gap-4 flex-wrap"
+        >
           <select
             name="month"
             className="border p-2 rounded"
@@ -254,6 +280,7 @@ function App() {
               </option>
             ))}
           </select>
+
           <select
             name="day"
             className="border p-2 rounded"
@@ -268,40 +295,76 @@ function App() {
               </option>
             ))}
           </select>
+
           <input
             type="number"
             name="year"
             placeholder="Year"
-            className="border p-2 rounded"
+            className="border p-2 rounded w-24"
             onChange={handleChange}
             value={birthData.year}
             required
           />
+
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
             Find Zodiac
           </button>
         </form>
+
         {/* Display result */}
         {result && (
           <div className="mt-6 text-center space-y-4">
+            <div className="flex justify-center mt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  setBirthData({ month: "", day: "", year: "" });
+                  setResult(null);
+                }}
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+              >
+                Reset
+              </button>
+            </div>
             <div>
-              <p className="text-xl font-bold">Your Western Zodiac:</p>
+              <p className="text-xl font-bold">Western Zodiac:</p>
               <p className="text-2xl">{result.western}</p>
               <p className="text-sm text-gray-600">{result.westernDesc}</p>
               <div className="flex items-center justify-center gap-2 mt-2">
                 <span className="text-sm font-semibold">Stone:</span>
                 <span
-                  className="inline-block w-6 h-6 rounded-full border border-gray-800"
-                  style={{ backgroundColor: "red" }}
+                  style={{
+                    backgroundColor: result.stoneColor,
+                    display: "inline-block",
+                    width: "24px",
+                    height: "24px",
+                    border: "1px solid black",
+                    borderRadius: "4px", // for a slightly rounded square, optional!
+                  }}
                 ></span>
                 <span className="text-sm">{result.stone}</span>
               </div>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <span className="text-sm font-semibold">
+                  Traditional Color:
+                </span>
+                <span
+                  style={{
+                    backgroundColor: result.traditionalColor,
+                    display: "inline-block",
+                    width: "24px",
+                    height: "24px",
+                    border: "1px solid black",
+                    borderRadius: "4px",
+                  }}
+                ></span>
+              </div>
             </div>
             <div>
-              <p className="text-xl font-bold">Your Chinese Zodiac:</p>
+              <p className="text-xl font-bold">Chinese Zodiac:</p>
               <p className="text-2xl">{result.chinese}</p>
               <p className="text-sm text-gray-600">{result.chineseDesc}</p>
               <p className="text-sm font-semibold text-red-600 mt-2">
