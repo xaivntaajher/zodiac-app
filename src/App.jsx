@@ -11,6 +11,7 @@ function App() {
   });
 
   const [result, setResult] = useState(null);
+  const [showList, setShowList] = useState(null);
 
   const handleChange = (e) => {
     setBirthData({
@@ -262,6 +263,108 @@ function App() {
             <span style={{ color: "purple" }}>c</span>
           </span>
         </h1>
+        <div className="flex justify-center gap-4 mb-4">
+          <button
+            onClick={() =>
+              setShowList(showList === "western" ? null : "western")
+            }
+            className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+          >
+            View Western Zodiacs
+          </button>
+          <button
+            onClick={() =>
+              setShowList(showList === "chinese" ? null : "chinese")
+            }
+            className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
+          >
+            View Chinese Zodiacs
+          </button>
+        </div>
+
+        {showList === "western" && (
+          <div style={{ marginTop: "1rem", textAlign: "center" }}>
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                marginBottom: "1rem",
+              }}
+            >
+              Western Zodiac Signs
+            </h2>
+            {Object.entries(westernZodiacData).map(([sign, data]) => (
+              <div key={sign} style={{ marginBottom: "1rem" }}>
+                <p style={{ fontSize: "16px", fontWeight: "bold" }}>{sign}:</p>
+                <p style={{ fontSize: "14px", color: "#555" }}>
+                  {data.description}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      marginRight: "8px",
+                    }}
+                  >
+                    Traditional Color:
+                  </span>
+                  <span
+                    style={{
+                      backgroundColor: data.traditionalColor,
+                      display: "inline-block",
+                      width: "24px",
+                      height: "24px",
+                      border: "1px solid black",
+                      borderRadius: "4px",
+                    }}
+                  ></span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {showList === "chinese" && (
+          <div style={{ marginTop: "1rem", textAlign: "center" }}>
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                marginBottom: "1rem",
+              }}
+            >
+              Chinese Zodiac Signs
+            </h2>
+            {Object.entries(chineseZodiacData).map(([sign, data]) => (
+              <div key={sign} style={{ marginBottom: "1rem" }}>
+                <p style={{ fontSize: "16px", fontWeight: "bold" }}>{sign}:</p>
+                <p style={{ fontSize: "14px", color: "#555" }}>
+                  {data.description}
+                </p>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    marginTop: "0.5rem",
+                    color: "#b91c1c",
+                  }}
+                >
+                  Avoid: {data.avoid}
+                </p>
+                <p style={{ fontSize: "12px", color: "#666" }}>{data.reason}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
         <form
           onSubmit={handleSubmit}
           className="flex items-center gap-4 flex-wrap"
@@ -333,8 +436,23 @@ function App() {
               <p className="text-xl font-bold">Western Zodiac:</p>
               <p className="text-2xl">{result.western}</p>
               <p className="text-sm text-gray-600">{result.westernDesc}</p>
-              <div className="flex items-center justify-center gap-2 mt-2">
-                <span className="text-sm font-semibold">Stone:</span>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "1rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    marginRight: "8px",
+                  }}
+                >
+                  Stone:
+                </span>
                 <span
                   style={{
                     backgroundColor: result.stoneColor,
@@ -342,13 +460,28 @@ function App() {
                     width: "24px",
                     height: "24px",
                     border: "1px solid black",
-                    borderRadius: "4px", // for a slightly rounded square, optional!
+                    borderRadius: "4px",
+                    marginRight: "8px",
                   }}
                 ></span>
-                <span className="text-sm">{result.stone}</span>
+                <span style={{ fontSize: "14px" }}>{result.stone}</span>
               </div>
-              <div className="flex items-center justify-center gap-2 mt-2">
-                <span className="text-sm font-semibold">
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "1rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    marginRight: "8px",
+                  }}
+                >
                   Traditional Color:
                 </span>
                 <span
@@ -359,6 +492,7 @@ function App() {
                     height: "24px",
                     border: "1px solid black",
                     borderRadius: "4px",
+                    marginRight: "8px",
                   }}
                 ></span>
               </div>
