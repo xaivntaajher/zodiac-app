@@ -270,7 +270,9 @@ function App() {
             }
             className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
           >
-            View Western Zodiacs
+            {showList === "western"
+              ? "Close Western Zodiacs"
+              : "View Western Zodiacs"}
           </button>
           <button
             onClick={() =>
@@ -278,7 +280,9 @@ function App() {
             }
             className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
           >
-            View Chinese Zodiacs
+            {showList === "chinese"
+              ? "Close Chinese Zodiacs"
+              : "View Chinese Zodiacs"}
           </button>
         </div>
 
@@ -371,7 +375,8 @@ function App() {
         >
           <select
             name="month"
-            className="border p-2 rounded"
+            style={{ fontSize: "1rem", padding: "0.25rem" }}
+            className="border p-3 rounded"
             onChange={handleChange}
             value={birthData.month}
             required
@@ -386,7 +391,8 @@ function App() {
 
           <select
             name="day"
-            className="border p-2 rounded"
+            style={{ fontSize: "1rem", padding: "0.25rem" }}
+            className="border p-3 rounded"
             onChange={handleChange}
             value={birthData.day}
             required
@@ -402,6 +408,7 @@ function App() {
           <input
             type="number"
             name="year"
+            style={{ fontSize: "1rem", padding: "0.25rem" }}
             placeholder="Year"
             className="border p-2 rounded w-24"
             onChange={handleChange}
