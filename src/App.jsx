@@ -255,12 +255,24 @@ function App() {
         <h1 className="text-2xl font-bold mb-4 text-center text-black">
           My
           <span className="ml-1">
-            <span style={{ color: "red" }}>Z</span>
-            <span style={{ color: "orange" }}>o</span>
-            <span style={{ color: "yellow" }}>d</span>
-            <span style={{ color: "green" }}>i</span>
-            <span style={{ color: "blue" }}>a</span>
-            <span style={{ color: "purple" }}>c</span>
+            <span style={{ color: "red", WebkitTextStroke: "1px black" }}>
+              Z
+            </span>
+            <span style={{ color: "orange", WebkitTextStroke: "1px black" }}>
+              o
+            </span>
+            <span style={{ color: "yellow", WebkitTextStroke: "1px black" }}>
+              d
+            </span>
+            <span style={{ color: "green", WebkitTextStroke: "1px black" }}>
+              i
+            </span>
+            <span style={{ color: "blue", WebkitTextStroke: "1px black" }}>
+              a
+            </span>
+            <span style={{ color: "purple", WebkitTextStroke: "1px black" }}>
+              c
+            </span>
           </span>
         </h1>
         <div className="flex justify-center gap-4 mb-4">
