@@ -410,6 +410,8 @@ function App() {
           <input
             type="number"
             name="year"
+            inputMode="numeric"
+            pattern="[0-9"
             style={{ fontSize: "1rem", padding: "0.25rem" }}
             placeholder="Year"
             className="border p-2 rounded w-24"
@@ -442,9 +444,11 @@ function App() {
               </button>
             </div>
             <div>
-              <p className="text-xl font-bold">Western Zodiac:</p>
-              <p className="text-2xl">{result.western}</p>
-              <p className="text-sm text-gray-600">{result.westernDesc}</p>
+              <p className="text-xl font-extrabold">Western Zodiac:</p>
+              <p className="text-2xl font-extrabold">{result.western}</p>
+              <p className="text-sm italic text-gray-600">
+                {result.westernDesc}
+              </p>
               <div
                 style={{
                   display: "flex",
@@ -507,13 +511,15 @@ function App() {
               </div>
             </div>
             <div>
-              <p className="text-xl font-bold">Chinese Zodiac:</p>
-              <p className="text-2xl">{result.chinese}</p>
-              <p className="text-sm text-gray-600">{result.chineseDesc}</p>
-              <p className="text-sm font-semibold text-red-600 mt-2">
+              <p className="text-xl font-extrabold mt-6">Chinese Zodiac:</p>
+              <p className="text-2xl font-extrabold">{result.chinese}</p>
+              <p className="text-sm italic text-gray-600">
+                {result.chineseDesc}
+              </p>
+              <p className="text-sm font-extrabold text-red-600 mt-2">
                 Avoid: {result.avoid}
               </p>
-              <p className="text-xs text-gray-500">{result.reason}</p>
+              <p className="text-xs italic text-gray-500">{result.reason}</p>
             </div>
           </div>
         )}
