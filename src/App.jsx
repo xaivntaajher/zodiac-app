@@ -1,7 +1,7 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import chinese_zodiac_rm from "./assets/images/chinese_zodiac_rm.png";
+import traditional_color from "./assets/images/traditional_color.png";
 
 function App() {
   const [birthData, setBirthData] = useState({
@@ -251,8 +251,33 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-gray-200 p-6 rounded shadow w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-4 text-center text-black">
+      <div className="bg-gray-200 p-2 rounded shadow w-full max-w-sm">
+        <div style={{ position: "relative", width: "300px", margin: "0 auto" }}>
+          <img
+            src={chinese_zodiac_rm}
+            alt="Chinese Zodiac Arc"
+            style={{
+              width: "300px",
+              height: "auto",
+              display: "block",
+              margin: "0 auto 1rem",
+            }}
+          />
+          <img
+            src={traditional_color}
+            alt="Traditional Colors"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100px",
+              height: "auto",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
+        <h1 className="text-2xl font-bold mt-0 mb-2 text-center text-black">
           My
           <span className="ml-1">
             <span style={{ color: "red" }}>Z</span>
@@ -330,6 +355,35 @@ function App() {
                       borderRadius: "4px",
                     }}
                   ></span>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "0.5rem",
+                    gap: "8px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Stone Color:
+                  </span>
+                  <span
+                    style={{
+                      backgroundColor: data.stoneColor,
+                      display: "inline-block",
+                      width: "24px",
+                      height: "24px",
+                      border: "1px solid black",
+                      borderRadius: "4px",
+                    }}
+                  ></span>
+                  <span className="text-sm">{data.stone}</span>
                 </div>
               </div>
             ))}
