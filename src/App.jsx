@@ -280,7 +280,7 @@ function App() {
             onClick={() =>
               setShowList(showList === "western" ? null : "western")
             }
-            className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+            className="bg-blue-500 text-[whitesmoke] py-1 px-3 rounded hover:bg-blue-600"
           >
             {showList === "western"
               ? "Close Western Zodiacs"
@@ -290,7 +290,7 @@ function App() {
             onClick={() =>
               setShowList(showList === "chinese" ? null : "chinese")
             }
-            className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600"
+            className="bg-green-500 text-[whitesmoke] py-1 px-3 rounded hover:bg-green-600"
           >
             {showList === "chinese"
               ? "Close Chinese Zodiacs"
@@ -388,7 +388,7 @@ function App() {
           <select
             name="month"
             style={{ fontSize: "1rem", padding: "0.25rem" }}
-            className="border p-3 rounded"
+            className="text-[whitesmoke] border p-3 rounded"
             onChange={handleChange}
             value={birthData.month}
             required
@@ -404,7 +404,7 @@ function App() {
           <select
             name="day"
             style={{ fontSize: "1rem", padding: "0.25rem" }}
-            className="border p-3 rounded"
+            className="text-[whitesmoke] border p-3 rounded"
             onChange={handleChange}
             value={birthData.day}
             required
