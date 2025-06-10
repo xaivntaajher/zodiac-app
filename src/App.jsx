@@ -300,7 +300,7 @@ function App() {
             {Object.entries(westernZodiacData).map(([sign, data]) => (
               <div key={sign} style={{ marginBottom: "1rem" }}>
                 <p style={{ fontSize: "16px", fontWeight: "bold" }}>{sign}:</p>
-                <p style={{ fontSize: "14px", color: "gray" }}>
+                <p style={{ fontSize: "14px", color: "whitesmoke" }}>
                   {data.description}
                 </p>
                 <div
@@ -350,7 +350,7 @@ function App() {
             {Object.entries(chineseZodiacData).map(([sign, data]) => (
               <div key={sign} style={{ marginBottom: "1rem" }}>
                 <p style={{ fontSize: "16px", fontWeight: "bold" }}>{sign}:</p>
-                <p style={{ fontSize: "14px", color: "gray" }}>
+                <p style={{ fontSize: "14px", color: "whitesmoke" }}>
                   {data.description}
                 </p>
                 <p
@@ -363,7 +363,9 @@ function App() {
                 >
                   Avoid: {data.avoid}
                 </p>
-                <p style={{ fontSize: "12px", color: "gray" }}>{data.reason}</p>
+                <p style={{ fontSize: "12px", color: "whitesmoke" }}>
+                  {data.reason}
+                </p>
               </div>
             ))}
           </div>
